@@ -1,7 +1,7 @@
-package com.spring.sdjpaintro.repository;
+package com.spring.sdjpaintro.repository.h2;
 
 import com.spring.sdjpaintro.domain.Book;
-import org.junit.jupiter.api.BeforeAll;
+import com.spring.sdjpaintro.repository.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

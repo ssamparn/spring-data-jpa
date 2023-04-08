@@ -14,7 +14,7 @@ services:
     expose:
       - 3307
     environment:
-        MYSQL_DATABASE: sdjpa-intro-mysql-db
+        MYSQL_DATABASE: bookdb
         MYSQL_ROOT_PASSWORD: password
         MYSQL_ROOT_HOST: '%'
     volumes:

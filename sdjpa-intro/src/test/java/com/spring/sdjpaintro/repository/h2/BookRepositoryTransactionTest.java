@@ -1,6 +1,7 @@
-package com.spring.sdjpaintro.repository;
+package com.spring.sdjpaintro.repository.h2;
 
 import com.spring.sdjpaintro.domain.Book;
+import com.spring.sdjpaintro.repository.BookRepository;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
