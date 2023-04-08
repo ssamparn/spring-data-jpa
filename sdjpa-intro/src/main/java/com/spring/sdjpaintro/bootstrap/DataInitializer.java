@@ -21,10 +21,10 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) {
         this.bookRepository.deleteAll();
 
-        Book bookDDD = new Book("Domain Driven Design", "123", "RandomHouse");
+        Book bookDDD = new Book("Domain Driven Design", "123", "RandomHouse", null);
         this.bookRepository.save(bookDDD);
 
-        Book bookSIA = new Book("Spring In Action", "234234", "Oriely");
+        Book bookSIA = new Book("Spring In Action", "234234", "Oriely", null);
         this.bookRepository.save(bookSIA);
 
         this.bookRepository.findAll().forEach(book -> {

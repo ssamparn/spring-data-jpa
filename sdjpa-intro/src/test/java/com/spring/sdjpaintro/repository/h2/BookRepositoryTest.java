@@ -26,7 +26,7 @@ class BookRepositoryTest {
         long countBefore = bookRepository.count();
         assertThat(countBefore).isEqualTo(0);
 
-        bookRepository.save(new Book("My Book", "1235555", "Self"));
+        bookRepository.save(new Book("My Book", "1235555", "Self", null));
         long countAfter = bookRepository.count();
 
         assertEquals(1, countAfter);

@@ -23,7 +23,7 @@ import jakarta.persistence.Id;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+public class Author {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -40,22 +40,9 @@ public class Book {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "isbn")
-    private String isbn;
-
-    @Column(name = "publisher")
-    private String publisher;
-
-    @Column(name = "author_id", columnDefinition = "uuid")
-    private UUID authorId;
-
-    public Book(String title, String isbn, String publisher, UUID authorId) {
-        this.title = title;
-        this.isbn = isbn;
-        this.publisher = publisher;
-        this.authorId = authorId;
-    }
+    @Column(name = "last_name")
+    private String lastName;
 }
