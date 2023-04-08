@@ -5,5 +5,6 @@ create table if not exists book (
     isbn varchar(255),
     publisher varchar(255),
     title varchar(255),
+    author_id BINARY(16),
     primary key (id)
 );
