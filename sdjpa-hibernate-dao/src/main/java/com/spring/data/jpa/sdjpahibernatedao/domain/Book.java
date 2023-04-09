@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 
 @Entity
 @Getter
@@ -17,6 +19,10 @@ import jakarta.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@NamedQueries({
+        @NamedQuery(name = "find_all_books", query = "FROM Book"),
+        @NamedQuery(name = "find_by_title", query = "FROM Book b where b.title = :title")
+})
 public class Book {
 
     @Id
