@@ -15,5 +15,6 @@
 
   <modules>
     <module>sdjpa-intro</module>
+    <module>sdjpa-jdbc</module>
   </modules>
 </project>
