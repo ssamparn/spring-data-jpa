@@ -17,5 +17,6 @@
     <module>sdjpa-intro</module>
     <module>sdjpa-jdbc</module>
     <module>sdjpa-jdbc-template</module>
+    <module>sdjpa-hibernate-dao</module>
   </modules>
 </project>
