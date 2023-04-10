@@ -1,0 +1,9 @@
+alter table order_header
+add shipping_address varchar(30),
+add shipping_city varchar(30),
+add shipping_state varchar(30),
+add shipping_zip_code varchar(30),
+add bill_to_address varchar(30),
+add bill_to_city varchar(30),
+add bill_to_state varchar(30),
+add bill_to_zip_code varchar(30);

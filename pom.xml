@@ -19,5 +19,6 @@
     <module>sdjpa-jdbc-template</module>
     <module>sdjpa-hibernate-dao</module>
     <module>sdjpa-spring-data-jpa</module>
+    <module>sdjpa-order-service</module>
   </modules>
 </project>
