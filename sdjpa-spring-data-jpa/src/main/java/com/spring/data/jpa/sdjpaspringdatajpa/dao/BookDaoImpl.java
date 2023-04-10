@@ -2,6 +2,7 @@ package com.spring.data.jpa.sdjpaspringdatajpa.dao;
 
 import com.spring.data.jpa.sdjpaspringdatajpa.domain.Book;
 import com.spring.data.jpa.sdjpaspringdatajpa.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,6 +12,7 @@ public class BookDaoImpl implements BookDao {
 
     private final BookRepository bookRepository;
 
+    @Autowired
     public BookDaoImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
