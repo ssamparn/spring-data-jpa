@@ -1,8 +1,14 @@
-package com.spring.data.jpa.sdjpaspringdatajpa.dao;
+package com.spring.data.jpa.sdjpaspringdatajpa.dao.jpa;
 
+import java.util.List;
+
+import com.spring.data.jpa.sdjpaspringdatajpa.dao.BookDao;
 import com.spring.data.jpa.sdjpaspringdatajpa.domain.Book;
 import com.spring.data.jpa.sdjpaspringdatajpa.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,6 +21,36 @@ public class BookDaoImpl implements BookDao {
     @Autowired
     public BookDaoImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
+    }
+
+    @Override
+    public List<Book> findAllBooksSortByTitle(Pageable pageable) {
+        Page<Book> bookPage = bookRepository.findAll(pageable);
+
+        return bookPage.getContent();
+    }
+
+    @Override
+    public List<Book> findAllBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable).getContent();
+    }
+
+    @Override
+    public List<Book> findAllBooks(int pageSize, int offset) {
+        Pageable pageable = PageRequest.ofSize(pageSize);
+
+        if (offset > 0) {
+            pageable = pageable.withPage(offset / pageSize);
+        } else {
+            pageable = pageable.withPage(0);
+        }
+
+        return this.findAllBooks(pageable);
+    }
+
+    @Override
+    public List<Book> findAllBooks() {
+        return bookRepository.findAll();
     }
 
     @Override

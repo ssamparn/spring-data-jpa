@@ -1,9 +1,9 @@
 package com.spring.data.jpa.sdjpaspringdatajpa;
 
 import com.spring.data.jpa.sdjpaspringdatajpa.dao.AuthorDao;
-import com.spring.data.jpa.sdjpaspringdatajpa.dao.AuthorDaoImpl;
+import com.spring.data.jpa.sdjpaspringdatajpa.dao.jpa.AuthorDaoImpl;
 import com.spring.data.jpa.sdjpaspringdatajpa.dao.BookDao;
-import com.spring.data.jpa.sdjpaspringdatajpa.dao.BookDaoImpl;
+import com.spring.data.jpa.sdjpaspringdatajpa.dao.jpa.BookDaoImpl;
 import com.spring.data.jpa.sdjpaspringdatajpa.domain.Author;
 import com.spring.data.jpa.sdjpaspringdatajpa.domain.Book;
 import org.junit.jupiter.api.Test;

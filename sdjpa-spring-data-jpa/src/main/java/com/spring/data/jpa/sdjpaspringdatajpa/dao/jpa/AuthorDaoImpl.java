@@ -1,8 +1,12 @@
-package com.spring.data.jpa.sdjpaspringdatajpa.dao;
+package com.spring.data.jpa.sdjpaspringdatajpa.dao.jpa;
 
+import java.util.List;
+
+import com.spring.data.jpa.sdjpaspringdatajpa.dao.AuthorDao;
 import com.spring.data.jpa.sdjpaspringdatajpa.domain.Author;
 import com.spring.data.jpa.sdjpaspringdatajpa.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,6 +19,11 @@ public class AuthorDaoImpl implements AuthorDao {
     @Autowired
     public AuthorDaoImpl(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
+    }
+
+    @Override
+    public List<Author> findAllAuthorsByLastName(String lastname, Pageable pageable) {
+        return authorRepository.findAuthorByLastName(lastname, pageable).getContent();
     }
 
     @Override
