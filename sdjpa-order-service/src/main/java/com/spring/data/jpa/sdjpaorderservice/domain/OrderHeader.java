@@ -5,11 +5,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Set;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Getter
@@ -59,4 +64,10 @@ public class OrderHeader extends BaseEntity {
 
     @Embedded
     private Address billToAddress;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+    @OneToMany(mappedBy = "orderHeader")
+    private Set<OrderLine> orderLines;
 }
