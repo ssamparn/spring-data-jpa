@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToMany;
 @Getter
 @Setter
 public class Product extends BaseEntity {
+
     private String description;
 
     @Enumerated(EnumType.STRING)

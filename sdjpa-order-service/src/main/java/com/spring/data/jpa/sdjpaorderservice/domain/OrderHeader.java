@@ -19,10 +19,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 @Getter
-@Setter
 @ToString
 @EqualsAndHashCode
 @AttributeOverrides({
@@ -61,9 +61,6 @@ import jakarta.persistence.OneToMany;
 })
 public class OrderHeader extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Customer customer;
-
     @Embedded
     private Address shippingAddress;
 
@@ -73,8 +70,14 @@ public class OrderHeader extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
+
+    @OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<OrderLine> orderLines;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")
+    private OrderApproval orderApproval;
 
     public void addOrderLine(OrderLine orderLine) {
         if (orderLines == null) {
@@ -83,5 +86,30 @@ public class OrderHeader extends BaseEntity {
 
         orderLines.add(orderLine);
         orderLine.setOrderHeader(this);
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public void setBillToAddress(Address billToAddress) {
+        this.billToAddress = billToAddress;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setOrderLines(Set<OrderLine> orderLines) {
+        this.orderLines = orderLines;
+    }
+
+    public void setOrderApproval(OrderApproval orderApproval) {
+        this.orderApproval = orderApproval;
+        orderApproval.setOrderHeader(this);
     }
 }
