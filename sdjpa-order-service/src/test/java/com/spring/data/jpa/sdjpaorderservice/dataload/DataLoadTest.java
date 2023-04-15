@@ -1,8 +1,10 @@
 package com.spring.data.jpa.sdjpaorderservice.dataload;
 
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import com.spring.data.jpa.sdjpaorderservice.domain.Address;
 import com.spring.data.jpa.sdjpaorderservice.domain.Customer;
@@ -57,6 +59,25 @@ public class DataLoadTest {
         }
 
         orderHeaderRepository.flush();
+    }
+
+    @Test
+    void testN_PlusOneProblem() {
+        Customer customer = customerRepository.findCustomerByCustomerNameIgnoreCase(TEST_CUSTOMER).get();
+
+        IntSummaryStatistics totalOrdered = orderHeaderRepository.findAllByCustomer(customer).stream()
+                .flatMap(orderHeader -> orderHeader.getOrderLines().stream())
+                .collect(Collectors.summarizingInt(OrderLine::getQuantityOrdered));
+
+        System.out.println("total ordered: " + totalOrdered.getSum());
+    }
+
+    @Test
+    void testLazyVsEager() {
+        OrderHeader orderHeader = orderHeaderRepository.getById(52l);
+
+        System.out.println("Order Id is: " + orderHeader.getId());
+        System.out.println("Customer Name is: " + orderHeader.getCustomer().getCustomerName());
     }
 
     private OrderHeader saveOrder(Customer customer, List<Product> products){
