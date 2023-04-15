@@ -1,7 +1,6 @@
 package com.spring.data.jpa.sdjpaorderservice.repository;
 
-import java.util.Set;
-
+import com.spring.data.jpa.sdjpaorderservice.domain.Customer;
 import com.spring.data.jpa.sdjpaorderservice.domain.OrderHeader;
 import com.spring.data.jpa.sdjpaorderservice.domain.OrderLine;
 import com.spring.data.jpa.sdjpaorderservice.domain.Product;
@@ -27,6 +26,9 @@ public class OrderHeaderRepositoryTest {
     private OrderHeaderRepository orderHeaderRepository;
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private ProductRepository productRepository;
 
     @BeforeEach
@@ -40,7 +42,11 @@ public class OrderHeaderRepositoryTest {
     @Test
     void testSaveOrder() {
         OrderHeader orderHeader = new OrderHeader();
-        orderHeader.setCustomer("New Customer");
+        Customer customer = new Customer();
+        customer.setCustomerName("New Customer");
+        Customer savedCustomer = customerRepository.save(customer);
+
+        orderHeader.setCustomer(savedCustomer);
 
         OrderHeader savedOrder = orderHeaderRepository.save(orderHeader);
 
@@ -58,7 +64,12 @@ public class OrderHeaderRepositoryTest {
     @Test
     void testSaveOrderWithLine() {
         OrderHeader orderHeader = new OrderHeader();
-        orderHeader.setCustomer("New Customer");
+        Customer customer = new Customer();
+        customer.setCustomerName("New Customer");
+
+        Customer savedCustomer = customerRepository.save(customer);
+
+        orderHeader.setCustomer(savedCustomer);
 
         OrderLine orderLine = new OrderLine();
         orderLine.setQuantityOrdered(5);

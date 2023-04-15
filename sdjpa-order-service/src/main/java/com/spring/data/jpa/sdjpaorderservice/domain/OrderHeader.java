@@ -16,6 +16,8 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -59,7 +61,8 @@ import jakarta.persistence.OneToMany;
 })
 public class OrderHeader extends BaseEntity {
 
-    private String customer;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
 
     @Embedded
     private Address shippingAddress;
