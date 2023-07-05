@@ -4,7 +4,7 @@ version: "3.8"
 services:
   mysql-container:
     image: mysql:latest
-    container_name: sdjpa-hibernate-dao
+    container_name: sdjpa-hibernate-dao-mysql
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     cap_add:
       - SYS_NICE
