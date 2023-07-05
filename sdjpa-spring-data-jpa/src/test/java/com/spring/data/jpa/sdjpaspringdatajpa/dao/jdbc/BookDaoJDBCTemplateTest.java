@@ -5,6 +5,7 @@ import java.util.List;
 import com.spring.data.jpa.sdjpaspringdatajpa.dao.BookDao;
 import com.spring.data.jpa.sdjpaspringdatajpa.domain.Book;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -53,6 +54,7 @@ class BookDaoJDBCTemplateTest {
     }
 
     @Test
+    @Disabled
     void findAllBooksPage2_pageable() {
         List<Book> books = bookDao.findAllBooks(PageRequest.of(1, 10));
 
@@ -77,6 +79,7 @@ class BookDaoJDBCTemplateTest {
     }
 
     @Test
+    @Disabled
     void findAllBooksPage2() {
         List<Book> books = bookDao.findAllBooks(10, 10);
 

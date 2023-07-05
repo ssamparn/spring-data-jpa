@@ -4,7 +4,7 @@ version: "3.8"
 services:
   mysql-container:
     image: mysql:latest
-    container_name: sdjpa-order-service-mysql
+    container_name: sdjpa-spring-data-jpa-mysql
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     cap_add:
       - SYS_NICE
@@ -14,18 +14,18 @@ services:
     expose:
       - 3307
     environment:
-        MYSQL_DATABASE: sdjpa_order_service
+        MYSQL_DATABASE: bookdb
         MYSQL_ROOT_PASSWORD: password
         MYSQL_ROOT_HOST: '%'
     volumes:
       - mysql-data-container:/var/lib/mysql
       - ./mysql-data-container/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - sdjpa-order-service-network
+      - sdjpa-spring-data-jpa
 
 volumes:
   mysql-data-container:
     driver: local
 
 networks:
-  sdjpa-order-service-network:
+  sdjpa-spring-data-jpa:
